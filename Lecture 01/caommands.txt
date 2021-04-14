@@ -2,8 +2,10 @@
 
 >>Run Ubuntu once to initialize it and set user and then close it
 
->> Set Ubuntu as default in a CMD window
+>> Set Ubuntu as default in a CMD window, and ensure its in wsl2
+wsl --set-default-version 2
 wsl --set-default Ubuntu
+wsl --set-version Ubuntu 2
 
 >> Create a fresh plutus-pioneer-program folder, for example c:\workspace, dont do it on a subdir of this or another git repo, just find a fresh direcory
 
@@ -14,19 +16,21 @@ git clone https://github.com/input-output-hk/plutus
 >> Open a Linux shell in your "c:\workspace" folder, shift+rightcklick in explorer, open linux shell here
 
 >> getrid of windows lineendings and find the commit id for the plutus project
-git --git-dir plutus-pioneer-program reset --hard 
-head -30 plutus-pioneer-program/code/week01/cabal.project
+cd plutus-pioneer-program
+git reset --hard
+head -30 code/week01/cabal.project
 3746610e53654a1167aeb4c6294c6096d16b0502
+cd ..
 
 >> checkout the correct plutus version, and use force to get rid of windows lineendings
-git --git-dir plutus checkout -f 3746610e53654a1167aeb4c6294c6096d16b0502
+cd plutus
+git checkout -f 3746610e53654a1167aeb4c6294c6096d16b0502
 
 >> install nix
 curl -L https://nixos.org/nix/install | sh
 . ~/.nix-profile/etc/profile.d/nix.sh
 
 >> build plutus
-cd plutus
 nix build -f default.nix plutus.haskell.packages.plutus-core.components.library
 # now wait some hours ....
 
