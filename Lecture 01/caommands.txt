@@ -1,0 +1,55 @@
+>>Install Ubuntu (microsoft store) or reset (extended options in applications and features) Ubuntu installation, use the one without version number
+
+>>Run Ubuntu once to initialize it and set user and then close it
+
+>> Set Ubuntu as default in a CMD window
+wsl --set-default Ubuntu
+
+>> Create a fresh plutus-pioneer-program folder, for example c:\workspace, dont do it on a subdir of this or another git repo, just find a fresh direcory
+
+>> Clone pioneer-progam and plutus on windows side into your c:\workspace folder, inside wsl you cannot clone to windows dirs
+git clone https://github.com/input-output-hk/plutus-pioneer-program
+git clone https://github.com/input-output-hk/plutus
+
+>> Open a Linux shell in your "c:\workspace" folder, shift+rightcklick in explorer, open linux shell here
+
+>> getrid of windows lineendings and find the commit id for the plutus project
+git --git-dir plutus-pioneer-program reset --hard 
+head -30 plutus-pioneer-program/code/week01/cabal.project
+3746610e53654a1167aeb4c6294c6096d16b0502
+
+>> checkout the correct plutus version, and use force to get rid of windows lineendings
+git --git-dir plutus checkout -f 3746610e53654a1167aeb4c6294c6096d16b0502
+
+>> install nix
+curl -L https://nixos.org/nix/install | sh
+. ~/.nix-profile/etc/profile.d/nix.sh
+
+>> build plutus
+cd plutus
+nix build -f default.nix plutus.haskell.packages.plutus-core.components.library
+# now wait some hours ....
+
+>> build the week01 code
+nix-shell
+# wait again
+cd ..
+cd plutus-pioneer-program/code/week01
+cabal update 
+cabal build
+
+>> Open a second wsl-linux shell in the c:\workspace\plutus dir and start the playground backend
+nix-shell
+cd plutus-playground-client
+plutus-playground-server
+
+>> Open a third wsl-linux shell in the c:\workspace\plutus dir and start the playground frontend
+nix-shell
+cd plutus-playground-client
+npm run start
+
+
+Bonus: Run the plutus compile environment in a docker container and use it for VSCode to compile things, requires that docker is installed on your system:
+
+>> Open a fourth wsl-linux shell in the c:\workspace\plutus dir and create the docker image
+docker load < $(nix-build default.nix -A devcontainer)
