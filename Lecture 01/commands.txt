@@ -48,9 +48,9 @@ npm run start
 
 >> open frontend in browser: https://localhost:8009/
 
-Bonus: Run the plutus compile environment in a docker container and use it for VSCode to compile things, requires that docker is installed on your system:
+BONUS: Run the plutus compile environment in a docker container and use it for VSCode to compile things, requires that docker is installed on your system:
 
->> Get VSCode for Windows and Get the Remote - Containers extension
+>> Get VSCode for Windows and Get the "Remote - Containers" extension
 
 >> goto dcker windows settings -> resources -> wsl integration -> enable ubuntu -> click apply and restart
 
@@ -63,3 +63,14 @@ cd plutus-starter
 code .
 > edit devcontainer.json and change "remoteUser": "plutus", to "remoteUser": "root", --- somehow it is screwed dunno
 > click reopen in container on the bottom
+
+>> open plutus-pioneer-program with devcontainer
+cp -r ~/workspace/plutus-starter/.devcontainer/ ~/workspace/plutus-pioneer-program/
+cd ~/workspace/plutus-pioneer-program/
+code .
+wait an hour until "Processing"-notification has finished
+
+>> open console (strg+ö)
+cd code/week01/
+cabal update
+cabal build
