@@ -70,7 +70,7 @@ cd ~/workspace/plutus-pioneer-program/
 code .
 wait an hour until "Processing"-notification has finished
 
->> open console (strg+ö)
+>> open console (strg+?)
 cd code/week01/
 cabal update
 cabal build
