@@ -35,7 +35,7 @@ References:
 https://code.visualstudio.com/docs/remote/wsl#_advanced-opening-a-wsl-2-folder-in-a-container
 
 1. Get VSCode for Windows
-2. Get the Remote - Containers extension
+2. Get the "Remote - Containers" extension
 3. Go back into WSL into your source directory (~/src , maybe)
 4. git clone https://github.com/input-output-hk/plutus-starter
 5. cd plutus-starter
