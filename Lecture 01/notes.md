@@ -88,6 +88,7 @@ Open a fourth nix-shell shell and create the docker image
 
   * edit devcontainer.json and change "remoteUser": "plutus", to "remoteUser": "root", --- somehow it is screwed dunno
   * click reopen in container on the bottom
+  * if everything looks fine close VSCode again
 
 open plutus-pioneer-program with devcontainer
 
