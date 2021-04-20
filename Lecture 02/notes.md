@@ -10,8 +10,8 @@ from https://docs.cardano.org/projects/plutus/en/latest/plutus/tutorials/basic-v
 
 Validators receive some information from the validating node:
 
-  * The redeemer, which is some script-specific data specified by the party spending the output.
   * The datum, which is some script-specific data specified by the party who created the output.
+  * The redeemer, which is some script-specific data specified by the party spending the output.
   * The validation context, which contains a representation of the spending transaction, as well as the index of the input whose validator is currently being run.
 
 
