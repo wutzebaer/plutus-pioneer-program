@@ -19,7 +19,7 @@ Clone pioneer-progam and plutus into your ~\workspace folder
 Go into plutus-pioneer-program and find commit correct commit id
 
     cd plutus-pioneer-program
-    head -30 code/week01/cabal.project
+    head -30 code/Week01/cabal.project
     output: 3746610e53654a1167aeb4c6294c6096d16b0502
     cd ..
 
